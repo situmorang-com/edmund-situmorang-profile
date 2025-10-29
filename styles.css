@@ -1313,9 +1313,10 @@ body::before {
         text-decoration: underline !important;
     }
     
-    /* Hero links - white text on gradient background */
+    /* Hero links - white text on gradient background, no underline */
     .hero-location a {
         color: #fff !important;
+        text-decoration: none !important;
     }
 
 
