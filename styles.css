@@ -276,6 +276,10 @@ body::before {
 }
 
 .about-content p {
+    margin-bottom: 1rem;
+}
+
+.about-content > p:first-of-type {
     margin-bottom: 1.5rem;
 }
 
@@ -284,7 +288,7 @@ body::before {
     backdrop-filter: blur(10px);
     border-left: 4px solid #667eea;
     padding: 1.5rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     border-radius: 8px;
 }
 
@@ -519,8 +523,8 @@ body::before {
 /* Skills Section */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
     margin-bottom: 2rem;
 }
 
@@ -528,37 +532,43 @@ body::before {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: 2rem;
-    border-radius: 20px;
+    padding: 0.9rem;
+    border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease;
+    overflow: visible;
+    min-width: 0;
 }
 
 .skill-category:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
 }
 
 .skill-category h3 {
     color: var(--text-dark);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
+    hyphens: auto;
 }
 
 .skills-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.35rem;
 }
 
 .skill-badge {
     display: inline-block;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.85rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
     font-weight: 500;
     transition: transform 0.3s ease;
 }
@@ -863,7 +873,11 @@ body::before {
         font-size: 2rem;
     }
 
-    .skills-grid,
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
     .contact-grid {
         grid-template-columns: 1fr;
     }
@@ -900,6 +914,418 @@ body::before {
 
     .section {
         padding: 60px 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    /* Hide Navigation & Interactive Elements */
+    .navbar,
+    .nav-container,
+    .nav-menu,
+    .hero::before,
+    .hero::after {
+        display: none !important;
+    }
+
+    /* Optimize Backgrounds & Colors */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    body::before {
+        display: none !important;
+    }
+
+    /* Convert glassmorphism to solid backgrounds */
+    .section,
+    .experience-item,
+    .education-item,
+    .skill-category,
+    .project-item,
+    .cert-item,
+    .award-item,
+    .contact-item,
+    .key-highlights {
+        background: #fff !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid #e5e7eb !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* Remove decorative backgrounds */
+    .section.alt-section {
+        background: #fff !important;
+    }
+
+    /* Keep Hero Section Colorful - Full Page */
+    /* 
+     * Paper Size Compatibility:
+     * - Hero height optimized at 262mm (10.31in) works perfectly for both sizes:
+     *   • A4 (297mm = 11.69in): 262mm hero leaves 35mm buffer - prevents overflow
+     *   • US Letter (279mm = 11in): 262mm hero leaves 17mm buffer - prevents overflow
+     * 
+     * Note: CSS cannot detect user's paper size selection in print dialog.
+     * We default to A4 in @page rules, but hero height works for both sizes.
+     * Users can change paper size in browser print dialog and hero will fit correctly.
+     */
+    @page {
+        size: A4;
+        margin: 0.5in;
+    }
+
+    @page :first {
+        margin: 0;
+        size: A4;
+    }
+
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        /* Hero height: 262mm is the PERFECT height for print
+         * - A4 (297mm): Leaves 35mm buffer - prevents overflow and blank page
+         * - US Letter (279mm): Leaves 17mm buffer - works perfectly
+         * This height allows natural page break without forcing an empty page
+         */
+        height: 262mm !important;
+        max-height: 262mm !important;
+        min-height: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        page-break-after: auto !important; /* NO forced break - let content flow naturally */
+        break-after: auto !important; /* Modern CSS - no forced break */
+        page-break-inside: avoid !important;
+        page-break-before: avoid !important;
+        orphans: 0 !important;
+        widows: 0 !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+    }
+
+    .hero::before,
+    .hero::after {
+        display: none !important;
+    }
+
+    /* Page Break Control */
+    .section {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        page-break-before: auto; /* Allow sections to flow naturally after hero */
+    }
+    
+    /* About section starts on page 2 naturally after hero fills page 1 */
+    #about {
+        page-break-before: auto !important; /* Let browser decide based on space */
+        break-before: auto !important;
+        page-break-after: auto !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Remove top padding/margin from first section after hero to prevent empty page */
+    .section:not(.hero):first-of-type {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        page-break-before: auto !important;
+        break-before: auto !important;
+    }
+    
+    /* Critical: Ensure no spacing or content between hero and next section */
+    .hero ~ section:first-of-type {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    h2.section-title {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+
+    .experience-item,
+    .education-item,
+    .project-item,
+    .cert-item,
+    .award-item {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Prevent orphaned headings */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Layout & Spacing Adjustments */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .hero .container {
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Ensure subsequent sections respect page margins - removed padding that could cause empty page */
+    .section:not(.hero) {
+        padding: 0 !important; /* Removed vertical padding to prevent empty page */
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .section:not(.hero) .container {
+        padding: 0.5in 0.5in !important; /* Top, right, bottom, left margins */
+        margin: 0 auto !important;
+    }
+    
+    /* Container padding for About section */
+    #about .container {
+        padding: 0.5in !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Font & Text Readability */
+    body {
+        font-size: 11pt !important;
+        line-height: 1.4 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, li, span, a {
+        color: #000 !important;
+    }
+
+    .hero-title {
+        font-size: 20pt !important;
+        margin-bottom: 0.5rem !important;
+        color: #fff !important;
+    }
+
+    .hero-subtitle {
+        font-size: 13pt !important;
+        color: #fff !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .hero-description {
+        font-size: 11pt !important;
+        color: #fff !important;
+        margin-bottom: 1rem !important;
+    }
+
+    h2.section-title {
+        font-size: 16pt !important;
+        color: #000 !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #000 !important;
+        background-clip: unset !important;
+        margin-bottom: 1rem !important;
+        border-bottom: 2px solid #000 !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    h3 {
+        font-size: 13pt !important;
+        color: #000 !important;
+    }
+
+    p, li {
+        font-size: 10pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Hero Section Optimization */
+    .hero-content {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important; /* NO padding to prevent overflow */
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Add minimal spacing only to child elements inside hero-content */
+    .hero-content > * {
+        margin: 0.25rem 0.5rem !important;
+    }
+
+    .hero-location {
+        display: block !important;
+        gap: 0.5rem !important;
+    }
+
+    .hero-location span {
+        display: inline-block !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding: 0.4rem 0.8rem !important;
+        margin: 0.2rem !important;
+        color: #fff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 50px !important;
+    }
+
+    .hero-location a {
+        color: #fff !important;
+    }
+
+    /* Profile Photo - Keep visible with border on gradient */
+    .profile-photo {
+        width: 150px !important;
+        height: 150px !important;
+        border-radius: 20px !important;
+        border: 4px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+        margin: 0 auto 1.5rem !important;
+        display: block !important;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        box-shadow: none !important;
+    }
+
+    /* Skills Grid Optimization - 2 columns for better print layout */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .skill-category {
+        padding: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .skill-category h3 {
+        font-size: 11pt !important;
+        margin-bottom: 0.5rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        line-height: 1.3 !important;
+        hyphens: auto !important;
+    }
+
+    .skill-badge {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 9pt !important;
+        background: #f3f4f6 !important;
+        color: #000 !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 12px !important;
+    }
+
+    /* Key Highlights */
+    .key-highlights {
+        border-left: 3px solid #000 !important;
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+        background: #f9fafb !important;
+    }
+
+    .key-highlights h3 {
+        font-size: 12pt !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .key-highlights ul li {
+        font-size: 10pt !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Experience & Education Items */
+    .experience-item,
+    .education-item {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .experience-period,
+    .education-period {
+        font-weight: 600 !important;
+        color: #000 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Links - URLs removed for cleaner print appearance */
+    a {
+        color: #000 !important;
+        text-decoration: underline !important;
+    }
+    
+    /* Hero links - white text on gradient background */
+    .hero-location a {
+        color: #fff !important;
+    }
+
+
+    /* Remove hover effects */
+    *:hover {
+        transform: none !important;
+        box-shadow: inherit !important;
+    }
+
+    /* Footer */
+    .footer {
+        background: #fff !important;
+        color: #000 !important;
+        border-top: 1px solid #e5e7eb !important;
+        padding: 1rem !important;
+        page-break-inside: avoid;
+    }
+
+    /* Animations */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Remove note references that might be web-specific */
+    .note {
+        font-size: 9pt !important;
+        color: #666 !important;
+        font-style: italic !important;
     }
 }
 
