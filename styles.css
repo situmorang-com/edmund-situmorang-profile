@@ -1068,7 +1068,12 @@ body::before {
         page-break-inside: avoid;
     }
 
-    .experience-item,
+    .experience-item {
+        page-break-inside: auto; /* Allow experience items to break if too long */
+        page-break-after: auto;
+        margin-bottom: 1rem !important;
+    }
+    
     .education-item,
     .project-item,
     .cert-item,
