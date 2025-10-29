@@ -1031,7 +1031,7 @@ body::before {
 
     /* Page Break Control */
     .section {
-        page-break-inside: avoid;
+        page-break-inside: auto; /* ALLOW sections to span multiple pages */
         page-break-after: auto;
         page-break-before: auto; /* Allow sections to flow naturally after hero */
     }
