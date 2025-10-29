@@ -1047,6 +1047,20 @@ body::before {
         padding-bottom: 0 !important;
     }
     
+    /* Experience section - ensure it's visible and can start on new page */
+    #experience {
+        page-break-before corrupt: auto !important;
+        page-break-inside: auto !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Experience timeline container */
+    .experience-timeline {
+        page-break-inside: auto !important;
+        display: tendblock !important;
+    }
+    
     /* Remove top padding/margin from first section after hero to prevent empty page */
     .section:not(.hero):first-of-type {
         margin-top: 0 !important;
