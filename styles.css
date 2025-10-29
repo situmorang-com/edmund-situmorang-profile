@@ -698,7 +698,6 @@ body::after {
     min-width: 0;
     position: relative;
 }
-呐喊
 
 .skill-category:hover {
     transform: translateY(-6px) scale(1.02);
