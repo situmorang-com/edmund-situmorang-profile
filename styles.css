@@ -703,10 +703,10 @@ body::after {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 
         var(--glass-shadow-hover),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        0 0 0 1px rgba(102, 126, 234, 0.1);
-    border-color: rgba(102, 126, 234, 0.35);
-    background: var(--glass-bg-hover);
+        tracks inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 0 0 1px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .skill-category h3 {
