@@ -1049,7 +1049,7 @@ body::before {
     
     /* Experience section - ensure it's visible and can start on new page */
     #experience {
-        page-break-before corrupt: auto !important;
+        page-break-before: auto !important;
         page-break-inside: auto !important;
         display: block !important;
         visibility: visible !important;
@@ -1058,7 +1058,7 @@ body::before {
     /* Experience timeline container */
     .experience-timeline {
         page-break-inside: auto !important;
-        display: tendblock !important;
+        display: block !important;
     }
     
     /* Remove top padding/margin from first section after hero to prevent empty page */
