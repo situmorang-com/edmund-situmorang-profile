@@ -780,7 +780,7 @@ body::after {
 .skill-category h3 {
     color: var(--text-dark);
     margin-bottom: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem; /* smaller heading for compact cards */
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.3;
@@ -799,7 +799,7 @@ body::after {
     color: white;
     padding: 0.3rem 0.65rem;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* slightly smaller badges */
     font-weight: 500;
     transition: transform 0.3s ease;
 }
@@ -1532,7 +1532,7 @@ body::after {
     }
 
     .skill-category h3 {
-        font-size: 11pt !important;
+        font-size: 10pt !important; /* smaller heading in print */
         margin-bottom: 0.25rem !important; /* tighter heading for print to avoid large gaps */
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
@@ -1552,7 +1552,7 @@ body::after {
 
     .skill-badge {
         padding: 0.25rem 0.5rem !important;
-        font-size: 9pt !important;
+        font-size: 8.5pt !important; /* smaller badge text in print */
         background: #f3f4f6 !important;
         color: #000 !important;
         border: 1px solid #d1d5db !important;
