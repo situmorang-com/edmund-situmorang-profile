@@ -31,9 +31,9 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     overflow-x: hidden;
-    background: linear-gradient(135deg, #fafcff 0%, #f0f5fa 50%, #f8f9fd 100%);
+    background: linear-gradient(135deg, #e8f0f8 0%, #f0e8f8 25%, #f8f0f0 50%, #f8f8f0 75%, #e8f0f8 100%);
     background-size: 400% 400%;
-    animation: bodyGradientShift 20s ease infinite;
+    animation: bodyGradientShift 15s ease infinite;
 }
 
 @keyframes bodyGradientShift {
@@ -56,13 +56,13 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 50% 50%, rgba(118, 75, 162, 0.08) 0%, transparent 70%),
-        linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(240, 147, 251, 0.03) 100%);
+        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(118, 75, 162, 0.15) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(240, 147, 251, 0.08) 100%);
     pointer-events: none;
     z-index: -1;
-    animation: backgroundPulse 20s ease-in-out infinite;
+    animation: backgroundPulse 15s ease-in-out infinite;
 }
 
 @keyframes backgroundPulse {
@@ -382,9 +382,9 @@ body::after {
 .section {
     padding: 80px 2rem;
     position: relative;
-    background: linear-gradient(135deg, #f8fafc 0%, #e8f0f8 50%, #f0f4f8 100%);
+    background: linear-gradient(135deg, #eef5f8 0%, #f0e8f8 33%, #f8eef0 66%, #f8f8ee 100%);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 12s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -400,9 +400,9 @@ body::after {
 }
 
 .section.alt-section {
-    background: linear-gradient(135deg, #f5f9fd 0%, #eef4fa 50%, #f8fcfd 100%);
+    background: linear-gradient(135deg, #f0eef8 0%, #f8eef0 33%, #f8f0ee 66%, #f0f8ee 100%);
     background-size: 400% 400%;
-    animation: gradientShiftAlt 20s ease infinite;
+    animation: gradientShiftAlt 18s ease infinite;
 }
 
 @keyframes gradientShiftAlt {
